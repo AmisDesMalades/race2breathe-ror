@@ -21,6 +21,9 @@
         <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password' %>
       </div>
 
+      <%= f.label :role %>
+      <%= f.select :role, User.roles.keys %>
+      
       <div class="form-group">
         <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg" %>
       </div>

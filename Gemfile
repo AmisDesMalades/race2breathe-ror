@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # Geocoding gem
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'open_street_map'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
