@@ -29,3 +29,10 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.generators
+.rakeTasks
+.idea/misc.xml
+.idea/modules.xml
+.idea/race2breathe-ror.iml
+.idea/vcs.xml
+.idea/inspectionProfiles/Project_Default.xml

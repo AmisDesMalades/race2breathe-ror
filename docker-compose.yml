@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  app:
+    image: race2breathe:v1
+    build:
+      context: .
+    command: ["spring", "server"]
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=syncop53
+      - RAILS_ENV
+    volumes:
+      - ./:/usr/src/app
+      - gems:/usr/local/bundle
+      - node-modules:/usr/src/app/node_modules
+      - ${HOME}/.irbrc:/root/.irbrc
+      - ${HOME}/.irb-history:/root/.irb-history
+
+  web:
+    image: race2breathe:v1
+    command: bin/rails server -b 0.0.0.0
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=syncop53
+      - RAILS_ENV
+    volumes:
+      - ./:/usr/src/app
+      - gems:/usr/local/bundle
+      - node-modules:/usr/src/app/node_modules
+    ports:
+      - 3000:3000
+
+  pg:
+    image: postgres:11.2-alpine
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=syncop53
+
+  webpacker:
+    image: race2breathe:v1
+    command: ./bin/webpack-dev-server
+    volumes:
+      - ./:/usr/src/app
+      - gems:/usr/local/bundle
+      - node-modules:/usr/src/app/node_modules
+    ports:
+      - 3035:3035
+
+
+volumes:
+  gems:
+  pg-data:
+  node-modules:
